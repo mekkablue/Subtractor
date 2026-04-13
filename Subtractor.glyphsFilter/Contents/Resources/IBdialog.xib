@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="centerBoundsField" destination="chk-ce-bb" id="out-ce-bb"/>
                 <outlet property="dialog" destination="1" id="out-dg-sub"/>
+                <outlet property="maskedComponentsField" destination="chk-ma-sk" id="out-ma-sk"/>
                 <outlet property="offsetField" destination="fld-of-fst" id="out-of-fst"/>
                 <outlet property="rotateField" destination="fld-ro-tat" id="out-ro-tat"/>
                 <outlet property="subtractField" destination="fld-su-btr" id="out-su-btr"/>
@@ -17,7 +18,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="1">
-            <rect key="frame" x="0.0" y="0.0" width="267" height="166"/>
+            <rect key="frame" x="0.0" y="0.0" width="267" height="202"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-su-btr">
@@ -90,13 +91,23 @@
                     </textFieldCell>
                 </textField>
                 <button toolTip="When enabled, the subtract shape is centered over the target glyph's bounding box before rotation and offset are applied." translatesAutoresizingMaskIntoConstraints="NO" id="chk-ce-bb">
-                    <rect key="frame" x="20" y="20" width="227" height="28"/>
+                    <rect key="frame" x="20" y="56" width="227" height="28"/>
                     <buttonCell key="cell" type="check" title="Center Bounding Boxes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="chk-ce-bb-c">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="setCenterBounds:" target="-2" id="act-ce-bb"/>
+                    </connections>
+                </button>
+                <button toolTip="Edit-view only: instead of performing a boolean subtraction, places a component of the subtract glyph on the layer with its mask attribute set to 1." translatesAutoresizingMaskIntoConstraints="NO" id="chk-ma-sk">
+                    <rect key="frame" x="20" y="20" width="227" height="28"/>
+                    <buttonCell key="cell" type="check" title="Add as Masked Components" bezelStyle="regularSquare" imagePosition="left" inset="2" id="chk-ma-sk-c">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="setMaskedComponents:" target="-2" id="act-ma-sk"/>
                     </connections>
                 </button>
             </subviews>
@@ -116,10 +127,13 @@
                 <constraint firstItem="lbl-su-btr" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="apq-MT-SOx"/>
                 <constraint firstItem="fld-su-btr" firstAttribute="top" secondItem="1" secondAttribute="top" constant="15" id="cJb-eC-Ldn"/>
                 <constraint firstItem="lbl-ro-tat" firstAttribute="top" secondItem="lbl-su-btr" secondAttribute="bottom" constant="18" id="cip-Oz-F3H"/>
-                <constraint firstAttribute="bottom" secondItem="chk-ce-bb" secondAttribute="bottom" constant="20" symbolic="YES" id="con-bot-cb"/>
                 <constraint firstItem="chk-ce-bb" firstAttribute="leading" secondItem="lbl-su-btr" secondAttribute="leading" id="con-lead-cb"/>
                 <constraint firstItem="chk-ce-bb" firstAttribute="top" secondItem="fld-of-fst" secondAttribute="bottom" constant="8" symbolic="YES" id="con-top-cb-f3"/>
                 <constraint firstItem="chk-ce-bb" firstAttribute="trailing" secondItem="fld-su-btr" secondAttribute="trailing" id="con-trail-cb"/>
+                <constraint firstAttribute="bottom" secondItem="chk-ma-sk" secondAttribute="bottom" constant="20" symbolic="YES" id="con-bot-msk"/>
+                <constraint firstItem="chk-ma-sk" firstAttribute="leading" secondItem="chk-ce-bb" secondAttribute="leading" id="con-lead-msk"/>
+                <constraint firstItem="chk-ma-sk" firstAttribute="top" secondItem="chk-ce-bb" secondAttribute="bottom" constant="8" symbolic="YES" id="con-top-msk"/>
+                <constraint firstItem="chk-ma-sk" firstAttribute="trailing" secondItem="chk-ce-bb" secondAttribute="trailing" id="con-trail-msk"/>
                 <constraint firstItem="fld-ro-tat" firstAttribute="baseline" secondItem="lbl-ro-tat" secondAttribute="firstBaseline" id="f5W-ym-GoX"/>
                 <constraint firstItem="fld-ro-tat" firstAttribute="trailing" secondItem="fld-of-fst" secondAttribute="trailing" id="l68-QV-sBx"/>
                 <constraint firstItem="fld-su-btr" firstAttribute="trailing" secondItem="fld-ro-tat" secondAttribute="trailing" id="n8M-nF-OB7"/>

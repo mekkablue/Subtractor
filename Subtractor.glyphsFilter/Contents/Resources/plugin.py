@@ -129,11 +129,12 @@ class Subtractor(FilterWithDialog):
 	# The NSView object from the User Interface. Keep this here!
 	dialog = objc.IBOutlet()
 
-	# Text fields and checkbox in dialog
-	subtractField     = objc.IBOutlet()
-	rotateField       = objc.IBOutlet()
-	offsetField       = objc.IBOutlet()
-	centerBoundsField = objc.IBOutlet()
+	# Text fields and checkboxes in dialog
+	subtractField          = objc.IBOutlet()
+	rotateField            = objc.IBOutlet()
+	offsetField            = objc.IBOutlet()
+	centerBoundsField      = objc.IBOutlet()
+	maskedComponentsField  = objc.IBOutlet()
 
 
 	@objc.python_method
@@ -172,16 +173,18 @@ class Subtractor(FilterWithDialog):
 	@objc.python_method
 	def start(self):
 		# Set default values
-		Glyphs.registerDefault(self.prefName('subtractShapes'), '_subtract')
-		Glyphs.registerDefault(self.prefName('randomRotate'),   5.0)
-		Glyphs.registerDefault(self.prefName('randomOffset'),   20.0)
-		Glyphs.registerDefault(self.prefName('centerBounds'),   0)
+		Glyphs.registerDefault(self.prefName('subtractShapes'),    '_subtract')
+		Glyphs.registerDefault(self.prefName('randomRotate'),      5.0)
+		Glyphs.registerDefault(self.prefName('randomOffset'),      20.0)
+		Glyphs.registerDefault(self.prefName('centerBounds'),      0)
+		Glyphs.registerDefault(self.prefName('maskedComponents'),  0)
 
 		# Populate fields
 		self.subtractField.setStringValue_(self.getPref('subtractShapes'))
 		self.rotateField.setStringValue_(self.getPref('randomRotate'))
 		self.offsetField.setStringValue_(self.getPref('randomOffset'))
 		self.centerBoundsField.setState_(int(self.getPref('centerBounds')))
+		self.maskedComponentsField.setState_(int(self.getPref('maskedComponents')))
 
 		# Focus first field
 		self.subtractField.becomeFirstResponder()
@@ -208,6 +211,11 @@ class Subtractor(FilterWithDialog):
 		Glyphs.defaults[self.prefName('centerBounds')] = sender.state()
 		self.update()
 
+	@objc.IBAction
+	def setMaskedComponents_(self, sender):
+		Glyphs.defaults[self.prefName('maskedComponents')] = sender.state()
+		self.update()
+
 
 	# Actual filter
 	@objc.python_method
@@ -224,10 +232,11 @@ class Subtractor(FilterWithDialog):
 			glyphName = layer.parent.name
 
 			# Defaults
-			subtractShapes = '_subtract'
-			maxRotate      = 5.0
-			maxOffset      = 20.0
-			centerBounds   = False
+			subtractShapes    = '_subtract'
+			maxRotate         = 5.0
+			maxOffset         = 20.0
+			centerBounds      = False
+			maskedComponents  = False  # Edit-view only; has no effect on custom parameter
 
 			if not inEditView:
 				# always skip predefined exclusions
@@ -265,6 +274,10 @@ class Subtractor(FilterWithDialog):
 					centerBounds = bool(int(self.getPref('centerBounds')))
 				except:
 					pass
+				try:
+					maskedComponents = bool(int(self.getPref('maskedComponents')))
+				except:
+					pass
 
 			font = layer.parent.parent
 			subtractGlyphs = getSubtractGlyphs(font, subtractShapes)
@@ -291,7 +304,13 @@ class Subtractor(FilterWithDialog):
 			if subtractLayer is None or not subtractLayer.shapes:
 				return
 
-			subtractFromLayer(layer, subtractLayer, maxRotate, maxOffset, centerBounds)
+			if maskedComponents:
+				# Edit-view only: place a masked component instead of boolean-subtracting
+				component = GSComponent(subtractGlyph.name)
+				component.attributes['mask'] = 1
+				layer.shapes.append(component)
+			else:
+				subtractFromLayer(layer, subtractLayer, maxRotate, maxOffset, centerBounds)
 
 		except Exception as e:
 			import traceback
