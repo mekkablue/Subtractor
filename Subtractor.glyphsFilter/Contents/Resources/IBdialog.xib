@@ -105,7 +105,7 @@
                 </button>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="chk-ma-sk">
                     <rect key="frame" x="20" y="20" width="237" height="30"/>
-                    <string key="toolTip">Edit-view only: instead of performing a boolean subtraction, places a component of the subtract glyph on the layer with its mask attribute set to 1.</string>
+                    <string key="toolTip">Edit-view only: instead of performing a boolean subtraction, places a component of the subtract glyph on the layer with its mask attribute set to 1. Any existing subtract components (matching the name prefix) are removed first, so there is never more than one at a time.</string>
                     <buttonCell key="cell" type="check" title="Add as Masked Components" bezelStyle="regularSquare" imagePosition="left" inset="2" id="chk-ma-sk-c">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
