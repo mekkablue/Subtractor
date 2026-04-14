@@ -346,6 +346,19 @@ class Subtractor(FilterWithDialog):
 				return
 
 			if maskedComponents:
+				# Remove any pre-existing components whose glyph name matches the
+				# subtract-shapes prefix before placing the new one, so there is
+				# never more than one subtract component on the layer at a time.
+				layer.shapes = [
+					s for s in layer.shapes
+					if not (
+						isinstance(s, GSComponent)
+						and (
+							s.componentName == subtractShapes
+							or s.componentName.startswith(subtractShapes + '.')
+						)
+					)
+				]
 				# Edit-view only: place a masked component instead of boolean-subtracting
 				component = GSComponent(subtractGlyph.name)
 				component.attributes['mask'] = 1
