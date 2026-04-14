@@ -18,11 +18,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="1">
-            <rect key="frame" x="0.0" y="0.0" width="267" height="202"/>
+            <rect key="frame" x="0.0" y="0.0" width="277" height="202"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-su-btr">
-                    <rect key="frame" x="18" y="129" width="110" height="17"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-su-btr">
+                    <rect key="frame" x="18" y="165" width="110" height="17"/>
                     <string key="toolTip">Name prefix of the subtract glyphs. Use a glyph named exactly this, or with a dot suffix (e.g., _subtract.rough). If multiple glyphs match, one is picked at random.</string>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="Vpt-DV-6WY"/>
@@ -33,8 +33,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fld-su-btr">
-                    <rect key="frame" x="134" y="126" width="113" height="25"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fld-su-btr">
+                    <rect key="frame" x="134" y="162" width="123" height="25"/>
                     <string key="toolTip">Name prefix of the subtract glyphs. Use a glyph named exactly this, or with a dot suffix (e.g., _subtract.rough). If multiple glyphs match, one is picked at random.</string>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="fld-su-btr-c">
                         <font key="font" metaFont="system"/>
@@ -45,8 +45,8 @@
                         <action selector="setSubtractShapes:" target="-2" id="act-su-btr"/>
                     </connections>
                 </textField>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-ro-tat">
-                    <rect key="frame" x="31" y="94" width="97" height="17"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-ro-tat">
+                    <rect key="frame" x="31" y="130" width="97" height="17"/>
                     <string key="toolTip">Maximum rotation in degrees. The subtract shape is rotated by a random amount between −n° and +n° around its bounding-box centre before subtracting. Set to 0 to disable.</string>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="gWE-0L-4ix"/>
@@ -57,8 +57,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fld-ro-tat" customClass="GSSteppingTextField">
-                    <rect key="frame" x="134" y="91" width="113" height="25"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fld-ro-tat" customClass="GSSteppingTextField">
+                    <rect key="frame" x="134" y="127" width="123" height="25"/>
                     <string key="toolTip">Maximum rotation in degrees. The subtract shape is rotated by a random amount between −n° and +n° around its bounding-box centre before subtracting. Set to 0 to disable.</string>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="fld-ro-tat-c">
                         <font key="font" metaFont="system"/>
@@ -69,8 +69,8 @@
                         <action selector="setRandomRotate:" target="-2" id="act-ro-tat"/>
                     </connections>
                 </textField>
-                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fld-of-fst" customClass="GSSteppingTextField">
-                    <rect key="frame" x="134" y="56" width="113" height="25"/>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fld-of-fst" customClass="GSSteppingTextField">
+                    <rect key="frame" x="134" y="92" width="123" height="25"/>
                     <string key="toolTip">Maximum displacement in font units. The subtract shape is shifted by a random amount up to ±n units in both X and Y before subtracting. Set to 0 to disable.</string>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="fld-of-fst-c">
                         <font key="font" metaFont="system"/>
@@ -81,8 +81,8 @@
                         <action selector="setRandomOffset:" target="-2" id="act-of-fst"/>
                     </connections>
                 </textField>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-of-fst">
-                    <rect key="frame" x="33" y="60" width="95" height="16"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-of-fst">
+                    <rect key="frame" x="33" y="96" width="95" height="16"/>
                     <string key="toolTip">Maximum displacement in font units. The subtract shape is shifted by a random amount up to ±n units in both X and Y before subtracting. Set to 0 to disable.</string>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Random Offset" id="lbl-of-fst-c">
                         <font key="font" metaFont="system"/>
@@ -91,17 +91,21 @@
                     </textFieldCell>
                 </textField>
                 <button toolTip="When enabled, the subtract shape is centered over the target glyph's bounding box before rotation and offset are applied." translatesAutoresizingMaskIntoConstraints="NO" id="chk-ce-bb">
-                    <rect key="frame" x="20" y="56" width="227" height="28"/>
+                    <rect key="frame" x="20" y="56" width="237" height="28"/>
                     <buttonCell key="cell" type="check" title="Center Bounding Boxes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="chk-ce-bb-c">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="1bh-ro-3KW"/>
+                    </constraints>
                     <connections>
                         <action selector="setCenterBounds:" target="-2" id="act-ce-bb"/>
                     </connections>
                 </button>
-                <button toolTip="Edit-view only: instead of performing a boolean subtraction, places a component of the subtract glyph on the layer with its mask attribute set to 1." translatesAutoresizingMaskIntoConstraints="NO" id="chk-ma-sk">
-                    <rect key="frame" x="20" y="20" width="227" height="28"/>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="chk-ma-sk">
+                    <rect key="frame" x="20" y="20" width="237" height="30"/>
+                    <string key="toolTip">Edit-view only: instead of performing a boolean subtraction, places a component of the subtract glyph on the layer with its mask attribute set to 1.</string>
                     <buttonCell key="cell" type="check" title="Add as Masked Components" bezelStyle="regularSquare" imagePosition="left" inset="2" id="chk-ma-sk-c">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
@@ -127,19 +131,19 @@
                 <constraint firstItem="lbl-su-btr" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="apq-MT-SOx"/>
                 <constraint firstItem="fld-su-btr" firstAttribute="top" secondItem="1" secondAttribute="top" constant="15" id="cJb-eC-Ldn"/>
                 <constraint firstItem="lbl-ro-tat" firstAttribute="top" secondItem="lbl-su-btr" secondAttribute="bottom" constant="18" id="cip-Oz-F3H"/>
-                <constraint firstItem="chk-ce-bb" firstAttribute="leading" secondItem="lbl-su-btr" secondAttribute="leading" id="con-lead-cb"/>
-                <constraint firstItem="chk-ce-bb" firstAttribute="top" secondItem="fld-of-fst" secondAttribute="bottom" constant="8" symbolic="YES" id="con-top-cb-f3"/>
-                <constraint firstItem="chk-ce-bb" firstAttribute="trailing" secondItem="fld-su-btr" secondAttribute="trailing" id="con-trail-cb"/>
                 <constraint firstAttribute="bottom" secondItem="chk-ma-sk" secondAttribute="bottom" constant="20" symbolic="YES" id="con-bot-msk"/>
+                <constraint firstItem="chk-ce-bb" firstAttribute="leading" secondItem="lbl-su-btr" secondAttribute="leading" id="con-lead-cb"/>
                 <constraint firstItem="chk-ma-sk" firstAttribute="leading" secondItem="chk-ce-bb" secondAttribute="leading" id="con-lead-msk"/>
-                <constraint firstItem="chk-ma-sk" firstAttribute="top" secondItem="chk-ce-bb" secondAttribute="bottom" constant="8" symbolic="YES" id="con-top-msk"/>
+                <constraint firstItem="chk-ce-bb" firstAttribute="top" secondItem="fld-of-fst" secondAttribute="bottom" constant="8" symbolic="YES" id="con-top-cb-f3"/>
+                <constraint firstItem="chk-ma-sk" firstAttribute="top" secondItem="chk-ce-bb" secondAttribute="bottom" constant="6" symbolic="YES" id="con-top-msk"/>
+                <constraint firstItem="chk-ce-bb" firstAttribute="trailing" secondItem="fld-su-btr" secondAttribute="trailing" id="con-trail-cb"/>
                 <constraint firstItem="chk-ma-sk" firstAttribute="trailing" secondItem="chk-ce-bb" secondAttribute="trailing" id="con-trail-msk"/>
                 <constraint firstItem="fld-ro-tat" firstAttribute="baseline" secondItem="lbl-ro-tat" secondAttribute="firstBaseline" id="f5W-ym-GoX"/>
                 <constraint firstItem="fld-ro-tat" firstAttribute="trailing" secondItem="fld-of-fst" secondAttribute="trailing" id="l68-QV-sBx"/>
                 <constraint firstItem="fld-su-btr" firstAttribute="trailing" secondItem="fld-ro-tat" secondAttribute="trailing" id="n8M-nF-OB7"/>
                 <constraint firstItem="lbl-of-fst" firstAttribute="trailing" secondItem="lbl-su-btr" secondAttribute="trailing" id="xda-3P-dbt"/>
             </constraints>
-            <point key="canvasLocation" x="96.5" y="236"/>
+            <point key="canvasLocation" x="101.5" y="242"/>
         </customView>
     </objects>
 </document>
