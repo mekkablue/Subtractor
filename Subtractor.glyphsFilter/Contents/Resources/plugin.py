@@ -124,6 +124,47 @@ def subtractFromLayer(targetLayer, subtractLayer, maxRotate=0.0, maxOffset=0.0, 
 	targetLayer.correctPathDirection()
 
 
+def buildComponentTransform(subtractLayer, targetLayer, maxRotate, maxOffset, centerBounds):
+	"""
+	Return a 6-tuple affine transform (m11,m12,m21,m22,tX,tY) for a GSComponent
+	so it gets the same centering, random rotation and random offset that
+	subtractFromLayer would apply to the paths.
+
+	Derivation: compose
+	  1. centering translation  (tx-sx, ty-sy)  — only when centerBounds
+	  2. rotation by θ around the pivot (cx,cy)  — (cx,cy) is the subtract
+	     shape's centre after the optional centering step
+	  3. random offset (rdx, rdy)
+	into a single affine matrix applied to the component's local coordinates.
+	"""
+	sc = getLayerCenter(subtractLayer)
+	if sc is None:
+		return (1, 0, 0, 1, 0, 0)
+	sx, sy = sc
+
+	# Rotation pivot after the optional centering step
+	if centerBounds:
+		tc = getLayerCenter(targetLayer)
+		cx, cy = tc if tc is not None else (sx, sy)
+	else:
+		cx, cy = sx, sy
+
+	angle = radians(uniform(-maxRotate, maxRotate))
+	rdx   = uniform(-maxOffset, maxOffset)
+	rdy   = uniform(-maxOffset, maxOffset)
+	cosA  = cos(angle)
+	sinA  = sin(angle)
+
+	# For a point (x,y) in the subtract glyph's own coordinate space:
+	#   after centering:  (x + cx-sx,  y + cy-sy)
+	#   after rotation around (cx,cy) and adding the random offset:
+	#     x' = cosA*x - sinA*y + (cx - sx*cosA + sy*sinA + rdx)
+	#     y' = sinA*x + cosA*y + (cy - sy*cosA - sx*sinA + rdy)
+	tX = cx - sx * cosA + sy * sinA + rdx
+	tY = cy - sy * cosA - sx * sinA + rdy
+	return (cosA, sinA, -sinA, cosA, tX, tY)
+
+
 class Subtractor(FilterWithDialog):
 
 	# The NSView object from the User Interface. Keep this here!
@@ -308,6 +349,10 @@ class Subtractor(FilterWithDialog):
 				# Edit-view only: place a masked component instead of boolean-subtracting
 				component = GSComponent(subtractGlyph.name)
 				component.attributes['mask'] = 1
+				if centerBounds or maxRotate != 0.0 or maxOffset != 0.0:
+					component.transform = buildComponentTransform(
+						subtractLayer, layer, maxRotate, maxOffset, centerBounds
+					)
 				layer.shapes.append(component)
 			else:
 				subtractFromLayer(layer, subtractLayer, maxRotate, maxOffset, centerBounds)
