@@ -2,6 +2,8 @@
 
 Effect plug-in for the [Glyphs.app](https://www.glyphsapp.com) font editor for subtracting prebuilt shapes from your glyph layers.
 
+![Subtractor in action](Subtractor.png)
+
 ## Installation
 
 1. One-click install *Subtractor* from *Window > Plugin Manager*
