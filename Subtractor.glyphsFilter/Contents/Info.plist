@@ -17,17 +17,17 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>UpdateFeedURL</key>
 	<string>https://raw.githubusercontent.com/mekkablue/Subtractor/master/Subtractor.glyphsFilter/Contents/Info.plist</string>
 	<key>productPageURL</key>
 	<string>https://github.com/mekkablue/Subtractor</string>
 	<key>productReleaseNotes</key>
-	<string>Added non-destructive mask option for Edit view.</string>
+	<string>More reliable calculation of layer centers.</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright, Rainer Erich Scheichelbauer, 2024</string>
+	<string>Copyright, Rainer Erich Scheichelbauer, 2026</string>
 	<key>NSPrincipalClass</key>
 	<string>Subtractor</string>
 	<key>PyMainFileNames</key>

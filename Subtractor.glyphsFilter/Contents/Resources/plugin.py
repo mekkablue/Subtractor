@@ -17,7 +17,7 @@
 import objc
 from GlyphsApp import *
 from GlyphsApp.plugins import *
-from Foundation import NSClassFromString, NSMutableArray
+from Foundation import NSClassFromString, NSMutableArray, NSMidX, NSMidY
 from math import cos, sin, radians
 from random import choice, uniform
 
@@ -36,6 +36,15 @@ def getSubtractGlyphs(font, prefix='_subtract'):
 
 def getLayerCenter(layer):
 	"""Compute bbox centre from node positions (works on detached layers)."""
+	if not layer.shapes:
+		return None
+	
+	# try layer bounds first:
+	bounds = layer.bounds or layer.fastBounds()
+	if bounds:
+		return (NSMidX(bounds), NSMidY(bounds))
+	
+	# if that fails, make your hands dirty:
 	minX = minY = float('inf')
 	maxX = maxY = float('-inf')
 	for shape in layer.shapes:
@@ -46,6 +55,17 @@ def getLayerCenter(layer):
 				if x > maxX: maxX = x
 				if y < minY: minY = y
 				if y > maxY: maxY = y
+		elif isinstance(shape, GSComponent):
+			componentBounds = shape.fastBounds()
+			bottomX = componentBounds.origin.x
+			bottomY = componentBounds.origin.y
+			topX = bottomX + componentBounds.size.width
+			topY = bottomY + componentBounds.size.height
+			if bottomX < minX: minX = bottomX
+			if bottomY < minY: minY = bottomY
+			if topX > maxX: maxX = topX
+			if topY > maxY: maxY = topY
+				
 	if minX == float('inf'):
 		return None
 	return ((minX + maxX) / 2.0, (minY + maxY) / 2.0)
