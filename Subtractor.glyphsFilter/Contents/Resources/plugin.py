@@ -402,8 +402,7 @@ class Subtractor(FilterWithDialog):
 
 	@objc.python_method
 	def generateCustomParameter(self):
-		return "%s; subtractShapes:%s; randomRotate:%s; randomOffset:%s; centerBounds:%s" % (
-			self.__class__.__name__,
+		return "Subtractor; subtractShapes:%s; randomRotate:%s; randomOffset:%s; centerBounds:%s" % (
 			self.getPref('subtractShapes'),
 			self.getPref('randomRotate'),
 			self.getPref('randomOffset'),
