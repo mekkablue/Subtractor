@@ -228,6 +228,8 @@ class Subtractor(FilterWithDialog):
 		})
 		# Load dialog from .nib (without .extension)
 		self.loadNib('IBdialog', __file__)
+		# Wider view with bottom margin, so Glyphs' footer (actions menu, Cancel, Subtract) has room
+		self.dialog.setFrameSize_((340, 210))
 
 
 	# On dialog show
